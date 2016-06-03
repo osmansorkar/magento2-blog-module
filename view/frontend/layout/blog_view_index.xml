@@ -1,7 +1,7 @@
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column" xsi:noNamespaceSchemaLocation="../../../../../../../lib/internal/Magento/Framework/View/Layout/etc/page_configuration.xsd">
     <body>
     	<referenceContainer name="content">
-    		<block class="OsmanSorkar\Blog\Block\Post\View" name="blog.post.view" template="OsmanSorkar_Blog::post\view.phtml" />
+    		<block class="OsmanSorkar\Blog\Block\Post\View" name="blog.post.view" template="OsmanSorkar_Blog::post/view.phtml" />
     	</referenceContainer>
     </body>
 </page>
