@@ -1,0 +1,36 @@
+.blog_posts a{
+	outline: 0;
+	text-decoration: none;
+}
+.blog_posts .post{
+	margin-bottom: 50px;
+}
+.blog_posts{
+	max-width: 646px;
+	margin: 0 auto;
+	padding: 15px;
+}
+.post_user_info{
+	margin-left: 60px;
+}
+.post_user_info .user_name{
+	color: #2acc7d;
+	font-weight: 700;
+}
+.post_user_info .post_date{
+	color: #b2b9c2;
+}
+.post_photo img{
+	display: block;
+	width: 100%;
+	max-height: 350px;
+}
+.post_readmore{
+	color: #b5bbc4;
+	display: block;
+	margin: 15px 0;
+}
+
+.blog_posts .toolbar-amount{
+	display: none;
+}

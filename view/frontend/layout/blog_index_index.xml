@@ -1,0 +1,10 @@
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column" xsi:noNamespaceSchemaLocation="../../../../../../../lib/internal/Magento/Framework/View/Layout/etc/page_configuration.xsd">
+	<head>
+		<css src="OsmanSorkar_Blog/css/blog_posts.css"/>
+	</head>
+    <body>
+    	<referenceContainer name="content">
+    		<block class="OsmanSorkar\Blog\Block\Posts" name="blog.posts" template="OsmanSorkar_Blog::posts.phtml" />
+    	</referenceContainer>
+    </body>
+</page>

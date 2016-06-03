@@ -1,0 +1,20 @@
+<?php /* var $block =\OsmanSorkar\Blog\Block\Posts */ ?>
+<div class="blog_posts">
+<?php foreach($block->getPostCollection() as $post){ ?>
+	<div class="post" id="post-<?php echo $post->getID(); ?>">
+		<div class="post_user_info">
+			<p class="user_name"><?php echo $block->getAdminUser($post->getUserID())->getUsername() ?></p>
+			<p class="post_date"><?php echo gmdate("F d, Y",strtotime($post->getCreationTime())); ?></p>
+		</div>
+		<?php echo $block->getImgHtml($post->getPhoto()); ?>
+		<h3 class="post_title"><a href="<?php echo $post->getUrl(); ?>"><?php echo $post->getTitle(); ?> </a></h3>
+		<div class="post_description">
+			<p> <?php echo substr(strip_tags($block->getFilterContent($post->getContent())),0,110) . "..."; ?> </p>
+			<a class="post_readmore" href="<?php echo $post->getUrl(); ?>">Read More ...</a>
+		</div>
+	</div>
+<?php
+}
+?>
+	<?php echo $block->getChildHtml("posts.pager"); ?>
+</div>

@@ -1,0 +1,17 @@
+<?php /* var $block =\OsmanSorkar\Blog\Block\Posts, $post = \OsmanSorkar\Blog\Model\Post */ ?>
+
+<?php $post=$block->getPost(); ?>
+<div class="post_user_info" style="margin-left: 60px;">
+		<p class="user_name" style="color: #2acc7d; font-weight: 700;"><?php echo $block->getAdminUser($post->getUserID())->getUsername() ?></p>
+		<p class="post_date" style="color: #b2b9c2;"><?php echo gmdate("F d, Y",strtotime($post->getCreationTime())); ?></p>
+</div>
+<div class="blog_posts" style="padding:15px;">
+	<div class="post" id="post-<?php echo $post->getID(); ?>">
+		<?php echo $block->getImgHtml($post->getPhoto()); ?>
+		<div class="post_description">
+			<p><?php echo $post->getContent() ?></p>
+		</div>
+
+	</div>
+
+</div>

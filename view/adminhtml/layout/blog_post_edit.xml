@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2015 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="admin-2columns-left" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <css src="jquery/fileUploader/css/jquery.fileupload-ui.css"/>
+    </head>
+    <update handle="editor"/>
+    <body>
+    	<referenceContainer name="left">
+            <block class="OsmanSorkar\Blog\Block\Adminhtml\Post\Edit\Tabs"
+                name="osmansorkar_blog_post.edit.tabs">
+                <block class="OsmanSorkar\Blog\Block\Adminhtml\Post\Edit\Tab\Content" name="osmansorkar_blog_post_content" />
+                <action method="addTab">
+                    <argument name="name" xsi:type="string">main_section</argument>
+                    <argument name="block" xsi:type="string">osmansorkar_blog_post_content</argument>
+                </action>
+            </block>
+        </referenceContainer>
+
+        <referenceContainer name="content">
+            <block class="OsmanSorkar\Blog\Block\Adminhtml\Post\Edit" name="blog_post_edit"/>
+        </referenceContainer>
+    </body>
+</page>
