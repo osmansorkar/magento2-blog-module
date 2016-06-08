@@ -9,6 +9,10 @@
                             <resource id="OsmanSorkar_Blog::save" title="Save Blog Post" sortOrder="10" />
                             <resource id="OsmanSorkar_Blog::post_delete" title="Delete Blog Post" sortOrder="20" />
                         </resource>
+                        <resource id="OsmanSorkar_Blog::category" title="Blog Category" sortOrder="50">
+                            <resource id="OsmanSorkar_Blog::category_save" title="Save Blog Category" sortOrder="10" />
+                            <resource id="OsmanSorkar_Blog::category_delete" title="Delete Blog Category" sortOrder="20" />
+                        </resource>
                     </resource>
                 </resource>
             </resource>

@@ -12,6 +12,8 @@ class Uninstall implements UninstallInterface
         $setup->startSetup();
  
         $setup->getConnection()->dropTable('osmansorkar_blog_post');
+        $setup->getConnection()->dropTable('osmansorkar_blog_category');
+        $setup->getConnection()->dropTable('osmansorkar_post_category');
 
         $setup->endSetup();
     }

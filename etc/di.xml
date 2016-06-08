@@ -15,4 +15,18 @@
             </argument>
         </arguments>
     </type>
+    <virtualType name="OsmanSorkar\Blog\Model\ResourceModel\Category\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">osmansorkar_blog_category</argument>
+            <argument name="resourceModel" xsi:type="string">OsmanSorkar\Blog\Model\ResourceModel\Category</argument>
+        </arguments>
+    </virtualType>
+
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="blog_category_listing_data_source" xsi:type="string">OsmanSorkar\Blog\Model\ResourceModel\Category\Grid\Collection</item>
+            </argument>
+        </arguments>
+    </type>
 </config>

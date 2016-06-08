@@ -15,9 +15,14 @@
             <block class="OsmanSorkar\Blog\Block\Adminhtml\Post\Edit\Tabs"
                 name="osmansorkar_blog_post.edit.tabs">
                 <block class="OsmanSorkar\Blog\Block\Adminhtml\Post\Edit\Tab\Content" name="osmansorkar_blog_post_content" />
+                <block class="OsmanSorkar\Blog\Block\Adminhtml\Post\Edit\Tab\Category" name="osmansorkar_blog_post_category" />
                 <action method="addTab">
                     <argument name="name" xsi:type="string">main_section</argument>
                     <argument name="block" xsi:type="string">osmansorkar_blog_post_content</argument>
+                </action>
+                <action method="addTab">
+                    <argument name="name" xsi:type="string">category_section</argument>
+                    <argument name="block" xsi:type="string">osmansorkar_blog_post_category</argument>
                 </action>
             </block>
         </referenceContainer>

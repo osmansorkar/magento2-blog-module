@@ -3,5 +3,6 @@
     <menu>
         <add id="OsmanSorkar_Blog::blog_content" title="Blog" module="OsmanSorkar_Blog" sortOrder="50" parent="Magento_Backend::content" resource="OsmanSorkar_Blog::blog_content" />
         <add id="OsmanSorkar_Blog::blog" title="Posts" module="OsmanSorkar_Blog" sortOrder="0" parent="OsmanSorkar_Blog::blog_content" action="blog/post" resource="OsmanSorkar_Blog::blog"/>
+        <add id="OsmanSorkar_Blog::category" title="Category" module="OsmanSorkar_Blog" sortOrder="10" parent="OsmanSorkar_Blog::blog_content" action="blog/category" resource="OsmanSorkar_Blog::category"/>
     </menu>
 </config>

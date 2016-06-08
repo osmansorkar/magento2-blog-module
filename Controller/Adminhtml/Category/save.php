@@ -4,25 +4,21 @@
  * Copyright © 2015 Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
-namespace OsmanSorkar\Blog\Controller\Adminhtml\Post;
+namespace OsmanSorkar\Blog\Controller\Adminhtml\Category;
 
 use Magento\Backend\App\Action;
 
 class Save extends \Magento\Backend\App\Action
-{
-    protected $authSession;
-    
+{ 
 
     /**
      * @param Action\Context $context
      * @param PostDataProcessor $dataProcessor
      */
     public function __construct(
-        Action\Context $context,
-        \Magento\Backend\Model\Auth\Session $authSession
+        Action\Context $context
         )
     {
-        $this->authSession=$authSession;
         parent::__construct($context);
     }
 
@@ -31,7 +27,7 @@ class Save extends \Magento\Backend\App\Action
      */
     protected function _isAllowed()
     {
-        return $this->_authorization->isAllowed('OsmanSorkar_Blog::save');
+        return $this->_authorization->isAllowed('OsmanSorkar_Blog::category_save');
     }
 
     /**
@@ -41,39 +37,33 @@ class Save extends \Magento\Backend\App\Action
      */
     public function execute()
     {
-    	      
         $data = $this->getRequest()->getPostValue();
         /** @var \Magento\Backend\Model\View\Result\Redirect $resultRedirect */
         $resultRedirect = $this->resultRedirectFactory->create();
         if ($data) {
 
-            $model = $this->_objectManager->create('OsmanSorkar\Blog\Model\Post');
+            $model = $this->_objectManager->create('OsmanSorkar\Blog\Model\Category');
 
-            $id = $this->getRequest()->getParam('post_id');
+            $id = $this->getRequest()->getParam('cat_id');
             if ($id) {
                 $model->load($id);
             }
 
             $model->setData($data);
-            $model->setUserID($this->authSession->getUser()->getId());
 
             $this->_eventManager->dispatch(
-                'blog_post_prepare_save',
+                'blog_category_prepare_save',
                 ['post' => $model, 'request' => $this->getRequest()]
             );
 
-            $postCategorys=$model->getData('category');
-            $model->unset('category');
+            
 
             try {
                 $model->save();
-                $this->saveCategory($postCategorys,$model->getId());
-                $this->messageManager->addSuccess(__('You saved this Post.'));
-
-
+                $this->messageManager->addSuccess(__('You saved this Category.'));
                 $this->_objectManager->get('Magento\Backend\Model\Session')->setFormData(false);
                 if ($this->getRequest()->getParam('back')) {
-                    return $resultRedirect->setPath('*/*/edit', ['post_id' => $model->getId(), '_current' => true]);
+                    return $resultRedirect->setPath('*/*/edit', ['cat_id' => $model->getId(), '_current' => true]);
                 }
                 return $resultRedirect->setPath('*/*/');
             } catch (\Magento\Framework\Exception\LocalizedException $e) {
@@ -85,20 +75,8 @@ class Save extends \Magento\Backend\App\Action
             }
 
             $this->_getSession()->setFormData($data);
-           
-            return $resultRedirect->setPath('*/*/edit', ['post_id' => $this->getRequest()->getParam('post_id')]);
+            return $resultRedirect->setPath('*/*/edit', ['cat_id' => $this->getRequest()->getParam('cat_id')]);
         }
         return $resultRedirect->setPath('*/*/');
-    }
-
-    protected function saveCategory($categorys,$post_id){
-    	$postCategor = $this->_objectManager->create('OsmanSorkar\Blog\Model\Postcategory');
-    	$postCategor->deletePostCategory($post_id);
-        foreach ($categorys as $category) {
-            $postCategoryModel = $this->_objectManager->create('OsmanSorkar\Blog\Model\Postcategory');
-            $postCategoryModel->setPostId($post_id);
-            $postCategoryModel->setCategoryId($category);
-            $postCategoryModel->save();
-        }
     }
 }

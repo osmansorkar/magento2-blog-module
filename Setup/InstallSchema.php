@@ -94,6 +94,76 @@ class InstallSchema implements InstallSchemaInterface
         );
         $installer->getConnection()->createTable($table);
 
+         /**
+         * Create table 'osmansorkar_blog_category'
+         */
+        $categoryTable = $installer->getConnection()->newTable(
+            $installer->getTable('osmansorkar_blog_category')
+        )->addColumn(
+            'cat_id',
+            \Magento\Framework\DB\Ddl\Table::TYPE_SMALLINT,
+            null,
+            ['identity' => true, 'nullable' => false, 'primary' => true],
+            'Category ID'
+        )->addColumn(
+            'name',
+            \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
+            100,
+            ['nullable' => false],
+            'Category Name'
+        )->addColumn(
+            'url_key',
+            \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
+            100,
+            ['nullable' => false, 'default' => null],
+            'Category Urk Key'
+        )->addColumn(
+            'parent_id',
+            \Magento\Framework\DB\Ddl\Table::TYPE_SMALLINT,
+            null,
+            ['nullable' => true],
+            'Category Parent User ID'
+        )->addColumn(
+            'creation_time',
+            \Magento\Framework\DB\Ddl\Table::TYPE_TIMESTAMP,
+            null,
+            ['nullable' => false, 'default' => \Magento\Framework\DB\Ddl\Table::TIMESTAMP_INIT],
+            'Post Creation Time'
+        )->addColumn(
+            'update_time',
+            \Magento\Framework\DB\Ddl\Table::TYPE_TIMESTAMP,
+            null,
+            ['nullable' => false, 'default' => \Magento\Framework\DB\Ddl\Table::TIMESTAMP_INIT_UPDATE],
+            'Post Modification Time'
+        )->addIndex(
+            $installer->getIdxName('osmansorkar_blog_category', ['url_key']),
+            ['url_key']
+        )->setComment(
+            'OsmanSorkar Blog Category Table'
+        );
+        $installer->getConnection()->createTable($categoryTable);
+
+         /**
+         * Create table 'osmansorkar_post_category'
+         */
+        $postCategoryTable = $installer->getConnection()->newTable(
+            $installer->getTable('osmansorkar_post_category')
+        )->addColumn(
+            'post_id',
+            \Magento\Framework\DB\Ddl\Table::TYPE_SMALLINT,
+            null,
+            ['nullable' => false],
+            'Post Id'
+        )->addColumn(
+            'category_id',
+            \Magento\Framework\DB\Ddl\Table::TYPE_SMALLINT,
+            null,
+            ['nullable' => false],
+            'Category  Id'
+        )->setComment(
+            'OsmanSorkar Blog Post Category Table'
+        );
+        $installer->getConnection()->createTable($postCategoryTable);
         /**
          * End Setup
          */
