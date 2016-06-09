@@ -17,6 +17,10 @@ class Collection extends \Magento\Framework\Model\ResourceModel\Db\Collection\Ab
 		$this->_init('OsmanSorkar\Blog\Model\Category', 'OsmanSorkar\Blog\Model\ResourceModel\Category');
 	}
 
+	/**
+	 * Get All Category for MultiSelect
+	 * @return array
+	 */
 	public function getCategory(){
 		$data=array();
 		foreach ($this as $key=> $item) {

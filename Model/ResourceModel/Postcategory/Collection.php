@@ -11,6 +11,12 @@ class Collection extends \Magento\Framework\Model\ResourceModel\Db\Collection\Ab
 	{
 		$this->_init('OsmanSorkar\Blog\Model\Postcategory', 'OsmanSorkar\Blog\Model\ResourceModel\Postcategory');
 	}
+
+	/**
+	 * Get All Post Category 
+	 * @param $id
+	 * @return array|null
+	 */
 	public function getCategorysValu($id){
 		if($id==null && empty($id)){
 			return null;

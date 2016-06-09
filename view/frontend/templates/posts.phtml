@@ -4,7 +4,7 @@
 	<div class="post" id="post-<?php echo $post->getID(); ?>">
 		<div class="post_user_info">
 			<p class="user_name"><?php echo $block->getAdminUser($post->getUserID())->getUsername() ?></p>
-			<p class="post_date"><?php echo gmdate("F d, Y",strtotime($post->getCreationTime())); ?></p>
+			<p class="post_date"><?php echo gmdate("F d, Y",strtotime($post->getCreationTime())); ?> <?php echo $block->categoryHtml($post->getID())?></p>
 		</div>
 		<?php echo $block->getImgHtml($post->getPhoto()); ?>
 		<h3 class="post_title"><a href="<?php echo $post->getUrl(); ?>"><?php echo $post->getTitle(); ?> </a></h3>

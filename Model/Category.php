@@ -5,7 +5,7 @@ use OsmanSorkar\Blog\Api\Data\CategoryInterface;
 
 class Category extends AbstractModel implements CategoryInterface {
 	public function _construct(){
-		parent::_init("OsmanSorkar\Blog\Model\ResourceModel\Category");
+		parent::_init('OsmanSorkar\Blog\Model\ResourceModel\Category');
 	}
 	/**
 	 * Get ID

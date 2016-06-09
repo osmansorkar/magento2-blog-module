@@ -24,6 +24,10 @@ class Posts extends \Magento\Framework\View\Element\Template
 	*@var \Magento\User\Model\User $adminUser
 	*/
 	protected $adminUser;
+	/**
+	 * @var \OsmanSorkar\Blog\helper\Post
+	 */
+	protected $postHelper;
 
 	/**
 	 * Posts constructor.
@@ -32,6 +36,7 @@ class Posts extends \Magento\Framework\View\Element\Template
 	 * @param \Magento\Cms\Model\Template\FilterProvider $filterProvider
 	 * @param \Magento\Framework\view\Page\Config $pageConfig
 	 * @param \Magento\User\Model\User $adminUser
+	 * @param \OsmanSorkar\Blog\helper\Post $postHelper
 	 * @param array $data
 	 */
 	function __construct(
@@ -40,6 +45,7 @@ class Posts extends \Magento\Framework\View\Element\Template
 			\Magento\Cms\Model\Template\FilterProvider $filterProvider,
 			\Magento\Framework\view\Page\Config $pageConfig,
 			\Magento\User\Model\User $adminUser,
+			\OsmanSorkar\Blog\helper\Post $postHelper,
 			$data=[]
 		)
 	{
@@ -47,6 +53,7 @@ class Posts extends \Magento\Framework\View\Element\Template
 		$this->filterProvider=$filterProvider;
 		$this->pageConfig=$pageConfig;
 		$this->adminUser=$adminUser;
+		$this->postHelper=$postHelper;
 		parent::__construct($context,$data);
 	}
 
@@ -122,10 +129,19 @@ class Posts extends \Magento\Framework\View\Element\Template
 		return $this->adminUser->load($id);
 	}
 	public function getImgHtml($img){
+		$img=$this->postHelper->getPhotoUrl($img);
         $html='';
         if($img!=""){
         $html='<div class="post_photo"> <img src="'.$this->filterProvider->getPageFilter()->filter($img).'" />  </div>';
         }
         return $html;
+    }
+
+	/**
+	 * @param $postId
+	 * @return string
+	 */
+    public function categoryHtml($postId){
+    	return $this->postHelper->getCategoryHtml($postId);
     }
 }

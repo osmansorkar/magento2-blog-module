@@ -3,7 +3,7 @@
 <?php $post=$block->getPost(); ?>
 <div class="post_user_info" style="margin-left: 60px;">
 		<p class="user_name" style="color: #2acc7d; font-weight: 700;"><?php echo $block->getAdminUser($post->getUserID())->getUsername() ?></p>
-		<p class="post_date" style="color: #b2b9c2;"><?php echo gmdate("F d, Y",strtotime($post->getCreationTime())); ?></p>
+		<p class="post_date" style="color: #b2b9c2;"><?php echo gmdate("F d, Y",strtotime($post->getCreationTime())); ?> <?php echo $block->categoryHtml($post->getID())?></p>
 </div>
 <div class="blog_posts" style="padding:15px;">
 	<div class="post" id="post-<?php echo $post->getID(); ?>">

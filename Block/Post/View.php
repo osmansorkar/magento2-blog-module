@@ -26,6 +26,10 @@ class View extends \Magento\Framework\View\Element\Template
     *@var \Magento\User\Model\User
     */
     protected $adminUser;
+    /**
+     * @var \OsmanSorkar\Blog\helper\Post
+     */
+	protected $postHelper;
 
     /**
      * View constructor.
@@ -34,6 +38,8 @@ class View extends \Magento\Framework\View\Element\Template
      * @param \OsmanSorkar\Blog\Model\PostFactory $postFactory
      * @param \Magento\Cms\Model\Template\FilterProvider $filterProvider
      * @param \Magento\Framework\UrlInterface $urlBuilder
+     * @param \Magento\User\Model\User $adminUser
+     * @param \OsmanSorkar\Blog\helper\Post $postHelper
      * @param array $data
      */
 	function __construct(
@@ -43,6 +49,7 @@ class View extends \Magento\Framework\View\Element\Template
             \Magento\Cms\Model\Template\FilterProvider $filterProvider,
             \Magento\Framework\UrlInterface $urlBuilder,
             \Magento\User\Model\User $adminUser,
+			\OsmanSorkar\Blog\helper\Post $postHelper,
 			$data=[]
 		)
 	{
@@ -51,6 +58,7 @@ class View extends \Magento\Framework\View\Element\Template
         $this->filterProvider=$filterProvider;
         $this->urlBuilder=$urlBuilder;
         $this->adminUser=$adminUser;
+        $this->postHelper=$postHelper;
 		parent::__construct($context,$data);
 	}
 
@@ -123,16 +131,33 @@ class View extends \Magento\Framework\View\Element\Template
         return $postData->setContent($this->filterProvider->getPageFilter()->filter($postData->getContent()));
     }
 
+    /**
+     * @param $id
+     * @return \Magento\User\Model\User
+     */
     public function getAdminUser($id)
     {
         return $this->adminUser->load($id);
     }
 
+    /**
+     * @param $img
+     * @return string
+     */
     public function getImgHtml($img){
+        $img=$this->postHelper->getPhotoUrl($img);
         $html='';
         if($img!=""){
         $html='<div class="post_photo"> <img src="'.$this->filterProvider->getPageFilter()->filter($img).'" />  </div>';
         }
         return $html;
+    }
+
+    /**
+     * @param $postId
+     * @return string
+     */
+    public function categoryHtml($postId){
+    	return $this->postHelper->getCategoryHtml($postId);
     }
 }
