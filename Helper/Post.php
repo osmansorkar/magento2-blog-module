@@ -52,16 +52,15 @@ class Post extends AbstractHelper{
 
 	/**
 	 * @param $url
-	 * @return string|void
+	 * @return string|null
 	 */
 	public function getPhotoUrl($url){
 		if($url==null){
 			return;
 		}
-		$url=explode("___directive",$url);
+		$url=explode('/',$url);
 		if(is_array($url)){
-		$url= str_replace('/',' ',$url['1']);
-		$url = $this->urlDecoder->decode($url);
+		$url = $this->urlDecoder->decode($url['9']);
 		return $url;
 		}
 	}
